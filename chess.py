@@ -92,34 +92,6 @@ def main(args):
         filtered_lines.append(lines_in_cluster[median])
     vertical_lines = np.stack(filtered_lines, axis=0)
 
-    # show horizontal lines
-    for rho, theta in horizontal_lines:
-        a = np.cos(theta)
-        b = np.sin(theta)
-        x0 = a * rho
-        y0 = b * rho
-        x1 = int(x0 + 10000 * -b)
-        y1 = int(y0 + 10000 * a)
-        x2 = int(x0 - 10000 * -b)
-        y2 = int(y0 - 10000 * a)
-        cv2.line(image, (x1, y1), (x2, y2), (0, 0, 255), 1)
-
-    # show vertical lines
-    for rho, theta in vertical_lines:
-        a = np.cos(theta)
-        b = np.sin(theta)
-        x0 = a * rho
-        y0 = b * rho
-        x1 = int(x0 + 10000 * -b)
-        y1 = int(y0 + 10000 * a)
-        x2 = int(x0 - 10000 * -b)
-        y2 = int(y0 - 10000 * a)
-        cv2.line(image, (x1, y1), (x2, y2), (0, 0, 255), 1)
-
-    cv2.imshow("Lines", image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
     # get intersection points
     all_intersections = []
     for hline in horizontal_lines:
